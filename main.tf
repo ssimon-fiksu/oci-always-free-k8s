@@ -25,7 +25,7 @@ module "compute" {
 
   leader = {
     shape = "VM.Standard.A1.Flex"
-    image = "Canonical-Ubuntu-20.04-aarch64-2021.12.01-0"
+    image = "Canonical-Ubuntu-24.04-aarch64-2024.10.09-0"
     # shape = "VM.Standard.E2.1.Micro"
     # image = "Canonical-Ubuntu-20.04-2021.12.01-0"
     ocpus            = 1
@@ -37,7 +37,7 @@ module "compute" {
   workers = {
     count = 3
     shape = "VM.Standard.A1.Flex"
-    image = "Canonical-Ubuntu-20.04-aarch64-2021.12.01-0"
+    image = "Canonical-Ubuntu-24.04-aarch64-2024.10.09-0"
     # shape = "VM.Standard.E2.1.Micro"
     # image = "Canonical-Ubuntu-20.04-2021.12.01-0"
     ocpus            = 1
