@@ -36,4 +36,5 @@ terraform.rc
 variables.auto.tfvars
 terraform.*
 .terraform
+.terraform.*
 .vscode
