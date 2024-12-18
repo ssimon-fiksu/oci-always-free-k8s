@@ -21,6 +21,13 @@ EOF
 
 sudo sysctl --system
 
+cat <<EOF | sudo tee /etc/sysctl.conf
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+EOF
+
+sudo sysctl -p
+
 # 1.2. Add Docker apt repository
 sudo apt-get install --yes \
   ca-certificates \
@@ -56,8 +63,14 @@ sudo systemctl restart containerd
 
 # 2. Install kubeadm
 
-sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
-echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+#sudo curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+#echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-focal main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+#curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+#sudo apt-add-repository "deb https://pkgs.k8s.io/ kubernetes-jammy main" --yes
+
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
 sudo apt-get clean
 sudo apt-get update
 sudo apt-get install --yes kubelet kubeadm kubectl

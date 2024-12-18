@@ -25,5 +25,5 @@ variable "windows_overwrite_local_kube_config" {
 
 variable "debug_create_cluster_admin" {
   type    = bool
-  default = false
+  default = true
 }

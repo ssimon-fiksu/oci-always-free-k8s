@@ -18,6 +18,7 @@ resource "oci_core_instance" "worker" {
   source_details {
     source_type = "image"
     source_id   = data.oci_core_images.workers.images[0].id
+    boot_volume_size_in_gbs = 50
   }
 
   create_vnic_details {
@@ -32,6 +33,6 @@ resource "oci_core_instance" "worker" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }

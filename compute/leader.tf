@@ -25,6 +25,7 @@ resource "oci_core_instance" "leader" {
   source_details {
     source_type = "image"
     source_id   = data.oci_core_images.leader.images[0].id
+    boot_volume_size_in_gbs = 50
   }
 
   create_vnic_details {
@@ -39,7 +40,7 @@ resource "oci_core_instance" "leader" {
   }
 
   lifecycle {
-    prevent_destroy = true
+    prevent_destroy = false
   }
 }
 
