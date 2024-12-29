@@ -64,7 +64,7 @@ data "remote_file" "kube_config_cluster" {
   conn {
     host             = var.cluster_public_ip
     user             = var.leader.vm_user
-    private_key_path = "/home/ubuntu/.ssh/ssh-key-2024-12-05.key"
+    private_key_path = "/home/ubuntu/.ssh/oracle.pem"
   }
   path = ".kube/config"
 }
