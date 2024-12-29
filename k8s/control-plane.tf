@@ -1,4 +1,4 @@
-# Control-plane setup
+## Control-plane setup
 
 resource "null_resource" "control_plane_setup" {
   triggers = {                                  # We can access leader instance after:
